@@ -1,4 +1,5 @@
-var computerChoices = [
+//2 - Set the initial global variables
+var options = [
   "a",
   "b",
   "c",
@@ -26,49 +27,46 @@ var computerChoices = [
   "y",
   "z"
 ];
+var userGuess = null;
+var guessesLeft = 9;
+var guessesMade = [];
 var wins = 0;
-var loses = 0;
-var guesses = 10;
-var guessedLetters = [];
+var losses = 0;
 
-// Displays text that I want into HTML
-var winsText = document.getElementById("wins-text");
-var losesText = document.getElementById("loses-text");
-var guessesLeft = document.getElementById("guesses-left");
-var guessesText = document.getElementById("guesses-text");
+//3 - create a function
+document.onkeyup = function() {
+  //3.1 - Computer makes a choice - choice is stored in a variable.
+  var computerGuess = options[Math.floor(Math.random() * options.length)];
+  console.log("The Computer guessed " + computerGuess);
 
-// This function is run whenever the user presses a key.
-document.onkeyup = function(event) {
-  // Determines which key was pressed.
-  var userGuess = event.key;
+  //3.2 - User makes a choice - choice is stored in a variable.
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+  console.log("The User guessed " + userGuess);
 
-  // Randomly chooses a letter from the computerChoices array. This is the Computer's choice.
-  var computerGuess =
-    computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-  // This logic will determine the outcome of the game (win/loss) and increments the appropriate number.
-
-  if (userGuess === computerGuess) {
+  //3.3 - Computer choice is compared to User choice.
+  if (userGuess == computerGuess) {
+    console.log("same");
+    //count win
     wins++;
-    guessedLetters = [];
+    console.log("The user has won " + wins + " times.");
+    //reset guessesLeft count to 9
+    guessesLeft = 9;
   } else {
-    guesses--;
-    guessedLetters.push(userGuess);
+    console.log("different");
+    guessesMade++;
+    guessesLeft--;
+    document.querySelector("#guessesSoFar").innerHTML += userGuess + " ";
+    console.log("The user has guessed a total of " + guessesMade + " times.");
+    if (guessesLeft == 0) {
+      losses++;
+      guessesLeft = 9;
+      userGuess = null;
+      document.querySelector("#guessesSoFar").innerHTML = userGuess;
+    }
   }
 
-  if (guesses === 0) {
-    loses++;
-    guessedLetters = [];
-  }
-  if (guesses === 0) {
-    guesses = 10;
-  }
-
-  // Displays the user and computer guesses, and wins/losses/guesses left/guessed letters.
-  window.onload = function() {
-    winsText.textContent = "Wins: " + wins;
-    losesText.textContent = "Losses: " + loses;
-    guessesLeft.textContent = "Guesses Left: " + guesses;
-    guessesText.textContent = "Your Guesses so far: " + guessedLetters;
-  };
+  //3.4 - Display wins, losses, guesses left for each round
+  document.querySelector("#winsCount").innerHTML = wins;
+  document.querySelector("#lossesCount").innerHTML = losses;
+  document.querySelector("#guessesLeft").innerHTML = guessesLeft;
 };

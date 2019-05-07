@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="UTF-8" />
     <title>Psychic Game</title>
-    <link rel="stylesheet" type="text/css" href="reset.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <script type="text/javascript" src="game.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="author" content="VIEN HONG" />
+    <meta name="copyright" content="&copy; 2019 VIEN HONG" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   </head>
+
   <body>
-    <header id="banner">
+    <div class="jumbotron">
       <div class="container">
-        <img src="moon.png" class="head-image" alt="Moon" />
         <h1>The Psychic Game</h1>
+        <p>
+          Guess what I am thinking. Sense which letter on the keyboard my
+          computerized self has selected and then press that key on the
+          keyboard. You get nine tries for each letter selected by me.
+        </p>
       </div>
-    </header>
-
-    <div id="game" class="main-container">
-      <p>Guess what letter I'm thinking of!</p>
-      <p>Wins: 0</p>
-      <p>Losses: 0</p>
-      <p>Guesses left: 9</p>
-      <p>Your guesses so far:</p>
-    </div>
-
-    <div class="main-container">
-      <img src="sign.png" class="side-image" alt="Sign" />
-    </div>
-
-    <footer>
       <div class="container">
-        Copyright &copy; 2019 Vien Hong
+        <div class="row">
+          <div class="col-md-3">
+            <h3>Wins:</h3>
+            <p><span id="winsCount"></span></p>
+          </div>
+          <div class="col-md-3">
+            <h3>Losses:</h3>
+            <p><span id="lossesCount"></span></p>
+          </div>
+          <div class="col-md-3">
+            <h3>Guesses left:</h3>
+            <p><span id="guessesLeft"></span></p>
+          </div>
+          <div class="col-md-3">
+            <h3>Your guesses so far:</h3>
+            <p><span id="guessesSoFar"></span></p>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
   </body>
 </html>
